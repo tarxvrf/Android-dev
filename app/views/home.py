@@ -1,7 +1,7 @@
 from flet import *
 import flet as ft
 
-
+from kontent.detail import detail
 from kontent.menufloat import datafloat
 from kontent.kontentmin import datakontmint
 from kontent.kontenbig import datakontbig
@@ -51,10 +51,10 @@ def homeview(page:Page):
     Column(
         [
         Card(
-           color="#40C4FF", 
+           color="#ff492811", 
            content=Container(
-               margin=margin.only(left=10),
-               content= Text("Mungkin Kalian Bisa lihat yg ini ",size=12,font_family="ROBOTO",weight=FontWeight.BOLD,color="white")
+               margin=margin.only(left=10,top=5,bottom=5),
+               content= Text("Review Pembeli ",size=12,font_family="ROBOTO",weight=FontWeight.BOLD,color="white")
            ))
         ]
     ),
@@ -70,9 +70,9 @@ def homeview(page:Page):
    Column(
         [
         Card(
-           color="#40C4FF", 
+           color="#ff492811",
            content=Container(
-               margin=margin.only(left=10),
+                margin=margin.only(left=10,top=5,bottom=5),
                content= Text("Mungkin Kalian Bisa lihat yg ini ",size=12,font_family="ROBOTO",weight=FontWeight.BOLD,color="white")
            ))
         ]
@@ -82,14 +82,38 @@ def homeview(page:Page):
     Column(
         [
              Container(
-             
-                     margin =margin.only(left=10),
+                     margin =margin.only(left=10,top=10,bottom=10),                    
                      content= datakontbig(page=page)
                      )
     
            
         ]
     ),
+
+    #=====================================================
+ Column(
+        [
+        Card(
+          color="#ff492811",
+           content=Container(
+               margin=margin.only(left=10,top=5,bottom=5),
+               content= Text("Mungkin Kalian Bisa lihat yg ini ",size=12,font_family="ROBOTO",weight=FontWeight.BOLD,color="white")
+           ))
+        ]
+    ),
+Column(
+        [
+             Container(
+                     
+                     margin =margin.only(left=10,top=10,bottom=10),  
+                     content= detail(page=page)
+                     )
+    
+           
+        ]
+    ),
+
+
 
 #================ BOTTOM BAR ========================================================                             
 

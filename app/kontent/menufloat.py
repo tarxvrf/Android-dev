@@ -17,7 +17,7 @@ def datafloat(page:Page):
                                                                
                                Column(
                                     controls=[
-                                    CircleAvatar(IconButton(icon=icons.MOTORCYCLE,on_click=lambda _:page.go("/store")),bgcolor="#D50000",color="white"),
+                                    CircleAvatar(IconButton(icon=icons.MOTORCYCLE,on_click=lambda _:page.go("/store/:id")),bgcolor="#D50000",color="white"),
                                                  Text("Ojek")]
                                                             ), 
                                                                                                            

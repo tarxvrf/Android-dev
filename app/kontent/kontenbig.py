@@ -2,19 +2,30 @@ from flet import *
 
 def datakontbig(page:Page):
     kontentbig = Row(scroll="always")
-               
-    for i in range (0,10):
+    img= ["coklat","cola","merah","taro"]           
+    for i in range (0,4):
         kontentbig.controls.append(
              Card(
-                         color="white",
+                         color="white",elevation=10,
                           content=Column(
                             controls= [
                                 Container(
+                                border=border.all(width=2,color="blue"),border_radius=10,
                                  padding=5,ink=True,on_click=lambda _:print("kontbig"),
                                  content=Column(
                                  controls=[
-                                 Image(src="pemandagan.jpg",fit=ImageFit.FIT_WIDTH,height=100,width=200,border_radius=border_radius.all(10)),                               
-                                 Text("Makannan1",text_align=TextAlign.CENTER)])  )
+                                 
+                                 Image(src=f'{img[i]}.jpg',fit=ImageFit.FIT_WIDTH,height=100,width=150,border_radius=border_radius.all(10)),                               
+                                 Text(f'Rasa {img[i]}',style=TextStyle(size=20,font_family="Comicsans",)),
+                                 Card(color="blue",
+                                     content=Container(padding=5,
+                                        content= Text("IDR 10,000",color="white")
+                                     )
+                                     
+                                     
+                                 )
+                                 ]),
+                                    )
                              ]
                          )
                      )
