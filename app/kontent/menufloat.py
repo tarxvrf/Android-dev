@@ -17,25 +17,25 @@ def datafloat(page:Page):
                                                                
                                Column(
                                     controls=[
-                                    CircleAvatar(IconButton(icon=icons.MOTORCYCLE,on_click=lambda _:page.go("/store/:id")),bgcolor="#D50000",color="white"),
-                                                 Text("Ojek")]
+                                    CircleAvatar(IconButton(icon=icons.MONETIZATION_ON,on_click=lambda _:page.go("/omset/:id")),bgcolor="#D50000",color="white"),
+                                                 Text("OMSET")]
                                                             ), 
                                                                                                            
                                   Column(
                                   controls=[
-                                   CircleAvatar(IconButton(icon=icons.SHOPPING_BASKET),bgcolor="#D50000",color="white"),
-                                                Text("Belanja")]
+                                   CircleAvatar(IconButton(icon=icons.CALCULATE,on_click=lambda _:page.go("/stok/:id")),bgcolor="#D50000",color="white"),
+                                                Text("STOK")]
                                                             ),
                                  Column(
                                      controls=[
                                          CircleAvatar(IconButton(icon=icons.HOTEL),bgcolor="#D50000",color="white"),
-                                                Text("Hotel")    ]
+                                                Text("")    ]
                                                             ),
                                                                             
                                     Column(
                                        controls=[
                                         CircleAvatar(IconButton(icon=icons.COMMUTE),bgcolor="#D50000",color="white"),
-                                                Text("Bus Suttle")  ]
+                                                Text("")  ]
                                                             )
                                               ],alignment=MainAxisAlignment.SPACE_EVENLY
 

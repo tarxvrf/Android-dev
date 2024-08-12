@@ -119,12 +119,12 @@ Column(
 
             
                         BottomAppBar(
-                            bgcolor="#D50000",height=80,
+                            bgcolor="#D50000",height=60,
                                          
                             padding=0,
 
                            content= Container(
-                                padding=padding.symmetric(-10),
+                                padding=padding.symmetric(-20),
                                 content=Stack(
                                    [
                                 Container( 
@@ -144,10 +144,10 @@ Column(
                                 )
                                 ),
                                Container(
-                                 padding=padding.symmetric(-10),
+                                
                                  content= Row(
                                      [
-                                    CircleAvatar(IconButton(icon=icons.SEARCH),radius=25)],MainAxisAlignment.CENTER
+                                    CircleAvatar(IconButton(icon=icons.SEARCH),radius=30)],MainAxisAlignment.CENTER
                                   )
                                  
                               )
@@ -155,7 +155,7 @@ Column(
                                    ]
                                )
                            )
-                          ,
+                          
                               
                               
                                 )

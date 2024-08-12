@@ -1,9 +1,9 @@
 import flet 
 from flet import *
 
-
+from views.stok import stokiew
 from views.home import homeview
-from views.store import storeview
+from views.omset import omsetview
 
 def main(page: Page):
     page.spacing=0,
@@ -17,14 +17,14 @@ def main(page: Page):
         page.views.append(
             homeview(page=page)
         )
-        if page.route =="/store":          
         
+        if troute.match("/omset/:id"):
             page.views.append(
-                storeview(page=page)
+               omsetview(page=page,params=troute.id)
             )
-        elif troute.match("/store/:id"):
+        elif troute.match("/stok/:id"):
             page.views.append(
-                storeview(page=page,params=troute.id)
+                stokiew(page=page,params=troute.id)
             )
         page.update()
 
