@@ -4,53 +4,40 @@ import datetime
 
 def omsetview(page:Page,params=None):
     tim =Text("")
+    datatot=Text("")
     
-    db = sqlite3.connect("teadb.db")
-    cur= db.cursor()    
-    sql = "select * from omset"
-    cur.execute(sql)
-    result= cur.fetchall()
-
-    data=0
-    for j in result:       
-            
-        data= (j[1])+data
-        hasiljual =Text(f'Total Omset = Rp {data}',size=16,weight=FontWeight.BOLD)   
-    db.commit()
-    db.close() 
+    hasiljual =Text(f'Total Omset = Rp 0',size=16,weight=FontWeight.BOLD) 
+    
     
     def tot():
         db = sqlite3.connect("teadb.db")
         cur= db.cursor()    
-        sql = "select * from omset"
+        sql = "select * from penjualan"
         cur.execute(sql)
-        result= cur.fetchall()
-        coltot = Column()
+        result= cur.fetchall()        
+        datap=0
+
         for x in result:
-                coltot.controls.append(
-                 Container(
-                      content= Row([
-                          Container(
-                          border=border.all(width=2,color="blue"),
-                          padding=padding.only(left=10,right=10),
-                          content=Row([
-                                 Text(str(f'Hari Ke {x[0]}'),size=20,weight=FontWeight.BOLD),
-                                 Text(str(f'Total = Rp. {x[1]}'),size=20,weight=FontWeight.BOLD),
-                        ]
-                     )
-                     )
-                         ],MainAxisAlignment.END)
-                 )
-               
-             )
-                
+            datap=datap+int(x[3])
+            
+        datatot.value= str(datap)
+        hasiljual.value= f'Rp. {datatot.value}'
         
-                
+        print(datatot.value,type(datatot.value))   
         db.commit()
         db.close
-        return coltot
-       
-        
+        return datatot
+    
+    def simpandong(e):
+         db= sqlite3.connect("teadb.db")
+         cur = db.cursor()
+         sql = "insert into omset(total) values(2)"
+         #val= (datatot.value)
+         cur.execute(sql)
+         db.commit()
+         db.close()
+         page.update()
+         print("tersimpan")
 
     
 
@@ -58,7 +45,7 @@ def omsetview(page:Page,params=None):
     tim.value= datetime.datetime.now().strftime("%d-%m-%Y")
     db = sqlite3.connect("teadb.db")
     cur= db.cursor()    
-    sql = "select * from stok"    
+    sql = "select * from penjualan"    
     cur.execute(sql)
     result= cur.fetchall()
     
@@ -89,7 +76,7 @@ def omsetview(page:Page,params=None):
                      Container(
                          padding=padding.only(left=10,bottom=10),width=120,margin=margin.only(top=7,bottom=0),
                          height=30,border_radius=20,border=border.all(width=2,color="blue"), 
-                         content= Text(f'Rp. {str(int(i[2])*int(i[3]))}',size=14,weight=FontWeight.BOLD)
+                         content= Text(f'Rp. {i[3]}',size=14,weight=FontWeight.BOLD)
                       ),
                       ]
                       )
@@ -138,17 +125,20 @@ def omsetview(page:Page,params=None):
     
       #=========fungsi====================== #
                         coled(),
-                        tot(),
-                    
+                       Container(
+                            margin=margin.only(bottom=10),
+                            content=tot()
+                       ) 
+                    ,
         #=========fungsi==================== #
-                
+                FloatingActionButton(icon=icons.SAVE,on_click=simpandong),
     #======BOTOOM APPBAR=================
               BottomAppBar(
                             bgcolor="#ff91e0f4",height=60,                                         
                             padding=0,
 
                             content= Container(
-                                padding=padding.symmetric(-20),
+                                
                                 content=Stack(
                                    [
                               ])))

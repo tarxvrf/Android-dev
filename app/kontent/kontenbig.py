@@ -2,8 +2,8 @@ from flet import *
 
 def datakontbig(page:Page):
     kontentbig = Row(scroll="always")
-    img= ["coklat","cola","merah","taro"]           
-    for i in range (0,4):
+    img= ["Coklat","cola","Red Velvet","Taro","Mangga","Teh"]           
+    for i in range (0,6):
         kontentbig.controls.append(
              Card(
                          color="white",elevation=10,

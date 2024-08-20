@@ -2,8 +2,8 @@ from flet import *
 
 def detail(page:Page):
     detail= Row(scroll="always")
-    img= ["coklat","cola","merah","taro"]           
-    for i in range (0,4):
+    img= ["Coklat","cola","Red Velvet","Taro","Mangga","Teh"]              
+    for i in range (0,6):
         detail.controls.append(
              Card(
                          color="white",

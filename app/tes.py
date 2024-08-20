@@ -14,8 +14,8 @@ def tabel3():
 def tabel():   
     db = sqlite3.connect("teadb.db")
     cur= db.cursor()
-    cur.execute("DROP TABLE IF EXISTS stok")
-    sql = "create table stok(id integer primary key autoincrement,nama varchar(50),jumlah integer,harga integer) "
+    cur.execute("DROP TABLE IF EXISTS omset")
+    sql = "create table omset(id integer primary key ,total integer) "
     cur.execute(sql)
     db.commit()
     db.close
