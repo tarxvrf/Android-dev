@@ -1,6 +1,7 @@
 import flet 
 from flet import *
 
+from views.edit import editview
 from views.stok import stokiew
 from views.home import homeview
 from views.omset import omsetview
@@ -25,6 +26,10 @@ def main(page: Page):
         elif troute.match("/stok/:id"):
             page.views.append(
                 stokiew(page=page,params=troute.id)
+            )
+        elif troute.match("/edit/:id"):
+            page.views.append(
+                editview(page=page,params=troute.id)
             )
         page.update()
 
