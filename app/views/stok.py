@@ -236,24 +236,12 @@ def stokiew(page:Page,params=None):
                                 padding=padding.symmetric(-20),
                                 content=Stack(
                                    [
-                                Container( 
-                                    
-                                    height=60,
-                                    margin=0,    
-                                   content=Row(
-                                        controls=[                                        
-                                        IconButton(icon=icons.MENU, icon_color=colors.WHITE),                                        
-                                        IconButton(icon=icons.FAVORITE, selected_icon_color="red",selected=False,
-                                                   style=ButtonStyle(color={"selected":colors.RED,"":colors.WHITE}),
-                                                   ),
-                                            ],alignment=MainAxisAlignment.SPACE_BETWEEN
-                                )
-                                ),
+                               
                                Container(
                                 
                                  content= Row(
                                      [
-                                    CircleAvatar(IconButton(icon=icons.SAVE,on_click=simpanomset),radius=30)],MainAxisAlignment.CENTER
+                                    CircleAvatar(IconButton(icon=icons.SAVE,on_click=simpanomset),radius=30,bgcolor="blue",color="white")],MainAxisAlignment.CENTER
                                   )  )
                               
                                    ]

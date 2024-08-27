@@ -9,7 +9,7 @@ def omsetview(page:Page,params=None):
     coled=Column()
     
     hasiljual =Text(f'Total Omset = Rp 0',size=16,weight=FontWeight.BOLD) 
-    listtanggal= Dropdown(hint_text="pilih tanggal",fill_color="white",width=100)
+    listtanggal= Dropdown(hint_text="pilih tanggal",fill_color="white",width=100,border="None",text_size=12)
 
     def lihattglpenjualan(e):
         idtgl.value= e.control.data[0]
@@ -116,7 +116,7 @@ def omsetview(page:Page,params=None):
             controls=[
                 #colom1 ==========================                      
                      #colom1 ========================== APPBAR =================================
-        AppBar(bgcolor="#ff91e0f4",toolbar_height=100
+        AppBar(bgcolor="#D50000",toolbar_height=100
                            ,shape=RoundedRectangleBorder(radius=border_radius.only(bottom_left=20,bottom_right=20)),
                            title=
                            Column([
@@ -145,15 +145,18 @@ def omsetview(page:Page,params=None):
                                               
                                                       
                            ),
-                           listtgl(),coled,
+                           Container(
+                               margin=20,border_radius=20,padding=10,width=160,height=45,border=border.all(width=2,color="blue"),
+                               content=listtgl()
+                           ),coled,
     
       #=========fungsi====================== #
                       
         #=========fungsi==================== #
-                FloatingActionButton(icon=icons.SAVE,on_click=simpandong),
+                FloatingActionButton(icon=icons.SAVE,on_click="simpandong"),
     #======BOTOOM APPBAR=================
               BottomAppBar(
-                            bgcolor="#ff91e0f4",height=60,                                         
+                            bgcolor="#D50000",height=60,                                         
                             padding=0,
 
                             content= Container(

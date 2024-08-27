@@ -127,38 +127,25 @@ Column(
                                 padding=padding.symmetric(-20),
                                 content=Stack(
                                    [
-                                Container( 
-                                    
-                                    height=60,
-                                    margin=0,    
                                 
                                     
-                                     
-                                     content=Row(
-                                        controls=[                                        
-                                        IconButton(icon=icons.MENU, icon_color=colors.WHITE),                                        
-                                        IconButton(icon=icons.FAVORITE, selected_icon_color="red",on_click=togle,selected=False,
-                                                   style=ButtonStyle(color={"selected":colors.RED,"":colors.WHITE}),
-                                                   ),
-                                            ],alignment=MainAxisAlignment.SPACE_BETWEEN
-                                )
-                                ),
-                               Container(
-                                
-                                 content= Row(
-                                     [
-                                    CircleAvatar(IconButton(icon=icons.SEARCH),radius=30)],MainAxisAlignment.CENTER
-                                  )
-                                 
-                              )
-                              
+                               #Container(   #height=60,
+                                    #margin=0,    
+                                   # content=Row(
+                                       # controls=[                                        
+                                       # IconButton(icon=icons.MENU, icon_color=colors.WHITE),                                        
+                                      #  IconButton(icon=icons.FAVORITE, selected_icon_color="red",on_click=togle,selected=False,
+                                            #       style=ButtonStyle(color={"selected":colors.RED,"":colors.WHITE}),
+                                           #        ),
+                                        #    ],alignment=MainAxisAlignment.SPACE_BETWEEN
+                               # )
+                                #),
+                               #Container(content= Row([ CircleAvatar(IconButton(icon=icons.SEARCH),radius=30)],MainAxisAlignment.CENTER ))
+                               
                                    ]
                                )
                            )
-                          
-                              
-                              
-                                )
+                         )
                           
                     ],bgcolor="white",padding=0,spacing=0,scroll="always",adaptive=True
                 )
