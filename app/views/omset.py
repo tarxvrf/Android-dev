@@ -5,58 +5,21 @@ import datetime
 def omsetview(page:Page,params=None):
     tim =Text("")
     datatot=Text("")
+    idtgl=Text("")
+    coled=Column()
     
     hasiljual =Text(f'Total Omset = Rp 0',size=16,weight=FontWeight.BOLD) 
-    
-    
-    def tot():
+    listtanggal= Dropdown(hint_text="pilih tanggal",fill_color="white",width=100)
+
+    def lihattglpenjualan(e):
+        idtgl.value= e.control.data[0]
         db = sqlite3.connect("teadb.db")
         cur= db.cursor()    
-        sql = "select * from penjualan"
+        sql = f'select * from penjualan where tanggal="{idtgl.value}"'
         cur.execute(sql)
-        result= cur.fetchall()        
-        datap=0
-
-        for x in result:
-            datap=datap+int(x[3])
-            
-        datatot.value= str(datap)
-        hasiljual.value= f'Rp. {datatot.value}'
-        
-        print(datatot.value,type(datatot.value))   
-        db.commit()
-        db.close
-        return datatot
-    
-    def simpandong(e):
-         db= sqlite3.connect("teadb.db")
-         cur = db.cursor()
-         sql = "insert into omset(total) values(2)"
-         #val= (datatot.value)
-         cur.execute(sql)
-         db.commit()
-         db.close()
-         page.update()
-         print("tersimpan")
-
-    
-
-
-    tim.value= datetime.datetime.now().strftime("%d-%m-%Y")
-    db = sqlite3.connect("teadb.db")
-    cur= db.cursor()    
-    sql = "select * from penjualan"    
-    cur.execute(sql)
-    result= cur.fetchall()
-    
-    db.commit()
-    db.close
-    
-    def coled():
-        cold= Column()
-       
-        for i in result:
-            cold.controls.append(
+        res= cur.fetchall()         
+        for i in res:
+            coled.controls.append(
                   Container(
                   padding=10,height=120,
                   content=Row([
@@ -76,14 +39,74 @@ def omsetview(page:Page,params=None):
                      Container(
                          padding=padding.only(left=10,bottom=10),width=120,margin=margin.only(top=7,bottom=0),
                          height=30,border_radius=20,border=border.all(width=2,color="blue"), 
-                         content= Text(f'Rp. {i[3]}',size=14,weight=FontWeight.BOLD)
+                         content= Text(f'Harga Rp. {i[3]}',size=14,weight=FontWeight.BOLD)
                       ),
                       ]
                       )
               ),
             )
+        db.commit()
+        db.close        
+        page.update()  
+        coled.controls.clear()       
+        return coled
+             
+
+    def listtgl():
+        db = sqlite3.connect("teadb.db")
+        cur= db.cursor()    
+        sql = "select tanggal from omset"
+        cur.execute(sql)
+        result= cur.fetchall()        
+        for x in result:
+            listtanggal.options.append(
+            dropdown.Option(x[0],on_click=lihattglpenjualan,data=x)
+        ) 
+        db.commit()
+        db.close
+        return listtanggal
+    
+    
+    db = sqlite3.connect("teadb.db")
+    cur= db.cursor()    
+    sql = "select * from omset"
+    cur.execute(sql)
+    result= cur.fetchall()        
+    datap=0
+    for x in result:
+        datap=datap+int(x[1])
+        datatot.value= str(datap)
+        hasiljual.value= f'Total Omset = Rp {datatot.value}'
+        print(hasiljual.value)
+        db.commit()
+        db.close
+        page.update()
         
-        return cold
+    
+    
+    def simpandong(e):
+         db= sqlite3.connect("teadb.db")
+         cur = db.cursor()
+         sql = "insert into omset(total) values(2)"
+         #val= (datatot.value)
+         cur.execute(sql)
+         db.commit()
+         db.close()
+         page.update()
+         print("tersimpan")
+
+    
+
+
+    tim.value= datetime.datetime.now().strftime("%d-%m-%Y")
+    db = sqlite3.connect("teadb.db")
+    cur= db.cursor()    
+    sql = "select tanggal from omset"    
+    cur.execute(sql)
+    result= cur.fetchall()
+    
+    db.commit()
+    db.close
 
     page.update()
 #=============================================================================================================
@@ -103,7 +126,7 @@ def omsetview(page:Page,params=None):
                                     padding=padding.only(left=5),
                                     content=Text("OMSET PENJUALAN",color="white")
                                       
-                               ), Icon(name=icons.STORE,color="white"),tim
+                               ), Icon(name=icons.STORE,color="white")
                              ],alignment=MainAxisAlignment.CENTER
                            ),
                            Row(
@@ -122,14 +145,10 @@ def omsetview(page:Page,params=None):
                                               
                                                       
                            ),
+                           listtgl(),coled,
     
       #=========fungsi====================== #
-                        coled(),
-                       Container(
-                            margin=margin.only(bottom=10),
-                            content=tot()
-                       ) 
-                    ,
+                      
         #=========fungsi==================== #
                 FloatingActionButton(icon=icons.SAVE,on_click=simpandong),
     #======BOTOOM APPBAR=================

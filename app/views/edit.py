@@ -57,11 +57,11 @@ def editview(page:Page,params=None):
                         Container(
                            border_radius=10,margin=10,
                            content= Image(f'{x[1]}.jpg',fit=ImageFit.CONTAIN,width=100,height=100)
-                        ),Container(width=50,height=40,content=tfield)
-                        ,ElevatedButton("Update",on_click=simpan),
-                        ElevatedButton("Kembali",on_click=balik)
+                        ),Container(width=40,height=40,content=tfield)
+                        ,IconButton(icon=icons.SAVE,icon_color="white",bgcolor="blue",on_click=simpan),
+                        IconButton(icon=icons.TURN_LEFT,icon_color="white",bgcolor="blue",on_click=balik)
 
-                    ],MainAxisAlignment.CENTER
+                    ],MainAxisAlignment.SPACE_AROUND
                 )
          
             )    

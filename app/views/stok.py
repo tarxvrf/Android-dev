@@ -5,7 +5,7 @@ import datetime
 def stokiew(page:Page,params=None): 
     coled=Column()
     tjfield= TextField("")
-    thasilubah=Text("")       
+    thasilomset=Text("")      
     tn= Text("") 
     txttgl= Text("")
     txtalert= Text("")
@@ -34,8 +34,7 @@ def stokiew(page:Page,params=None):
     #botomshet= Banner( content=Column(
                                      #[txtalert,tjfield ])                         
                                       #,actions=[ElevatedButton("simpan",on_click=dialogsimpan),ElevatedButton("batal",on_click=lambda _:page.close(botomshet))]
-                                      #)
-    
+   
     
 
     def infohapus():
@@ -54,6 +53,18 @@ def stokiew(page:Page,params=None):
         infohapus()
         lihat()
         page.update()
+
+    def simpanomset(e):            
+        db = sqlite3.connect("teadb.db")
+        cur= db.cursor()    
+        sql = f'insert into omset(total,tanggal) values("{thasilomset.value}","{tglini}")'        
+        cur.execute(sql)        
+        db.commit()
+        db.close() 
+        coled.controls.clear()
+        lihat()
+        print(thasilomset.value,tglini)      
+        page.update()
                  
     def bukadialog(e):
         id.value= e.control.data[0]
@@ -68,8 +79,10 @@ def stokiew(page:Page,params=None):
     cur= db.cursor()    
     sql = f'select * from penjualan where tanggal="{tglini}"'
     cur.execute(sql)
-    res= cur.fetchall()        
-    for x in res:                       
+    res= cur.fetchall()    
+    hasilomset=0    
+    for x in res:   
+        hasilomset=int(x[4])+hasilomset                    
         coled.controls.append(
                 Row(
                     [
@@ -83,14 +96,17 @@ def stokiew(page:Page,params=None):
                 )
 
             )
+    thasilomset.value=hasilomset
        
     def lihat():        
         db = sqlite3.connect("teadb.db")
         cur= db.cursor()    
-        sql = "select * from penjualan"
+        sql = f'select * from penjualan where tanggal="{tglini}"'
         cur.execute(sql)
-        res= cur.fetchall()        
-        for x in res:                       
+        res= cur.fetchall()   
+        hasilomset=0     
+        for x in res:
+            hasilomset=int(x[4])+hasilomset
             coled.controls.append(
                 Row(
                     [
@@ -104,6 +120,7 @@ def stokiew(page:Page,params=None):
                 )
 
             )
+        
        
     #dialog= AlertDialog(modal=True,title=Text("update data"),
                         #content=Column(
@@ -236,7 +253,7 @@ def stokiew(page:Page,params=None):
                                 
                                  content= Row(
                                      [
-                                    CircleAvatar(IconButton(icon=icons.SAVE),radius=30)],MainAxisAlignment.CENTER
+                                    CircleAvatar(IconButton(icon=icons.SAVE,on_click=simpanomset),radius=30)],MainAxisAlignment.CENTER
                                   )  )
                               
                                    ]
